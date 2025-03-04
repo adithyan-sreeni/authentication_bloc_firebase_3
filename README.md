@@ -10,7 +10,3 @@ Try out the app by downloading the APK and testing it on your device.
 2. Open the downloaded file on your Android device.  
 3. If prompted, allow installation from unknown sources.  
 4. Enjoy testing the app! 🎉  
-
----
-
-💡 Found a bug or have feedback? Feel free to open an issue!  
