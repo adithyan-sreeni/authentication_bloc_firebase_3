@@ -1,6 +1,4 @@
-import 'dart:developer';
 import 'package:authentication_bloc_firebase_2/features/auth/presentation/bloc/auth_bloc.dart';
-import 'package:authentication_bloc_firebase_2/features/auth/presentation/pages/home_page.dart';
 import 'package:authentication_bloc_firebase_2/features/auth/presentation/widgets/email_field.dart';
 import 'package:authentication_bloc_firebase_2/features/auth/presentation/widgets/or_continue.dart';
 import 'package:authentication_bloc_firebase_2/features/auth/presentation/widgets/password_field.dart';
@@ -122,7 +120,7 @@ class SignUpPage extends StatelessWidget {
                         // }
                         context.read<AuthBloc>().add(SignInWithGoogleEvent());
                       },
-                      label: 'Google',
+                      label: 'Create Account with Google',
                       // assetLocation: 'lib/images/google.svg',
                     ),
                     SizedBox(height: 20),

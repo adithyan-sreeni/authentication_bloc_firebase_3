@@ -2,7 +2,6 @@ import 'package:authentication_bloc_firebase_2/authwrapper.dart';
 import 'package:authentication_bloc_firebase_2/core/theme/dark_theme.dart';
 import 'package:authentication_bloc_firebase_2/features/auth/data/auth_repo_impl.dart';
 import 'package:authentication_bloc_firebase_2/features/auth/presentation/bloc/auth_bloc.dart';
-import 'package:authentication_bloc_firebase_2/features/auth/presentation/widgets/gbutton.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';

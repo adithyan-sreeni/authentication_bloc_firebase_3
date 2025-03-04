@@ -38,3 +38,9 @@ class AuthErrorEvent extends AuthEvent {
 }
 
 class AuthCheckRequested extends AuthEvent {}
+
+class ShowSnackBarEvent extends AuthEvent {
+  final String message;
+
+  ShowSnackBarEvent({required this.message});
+}

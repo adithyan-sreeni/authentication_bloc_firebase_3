@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:authentication_bloc_firebase_2/core/errors/failure.dart';
 import 'package:authentication_bloc_firebase_2/features/auth/domain/auth_repo.dart';
 import 'package:bloc/bloc.dart';
@@ -12,9 +10,7 @@ part 'auth_state.dart';
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
   final AuthRepository authRepository;
   AuthBloc({required this.authRepository}) : super(AuthInitial()) {
-    on<AuthEvent>((event, emit) {
-      // TODO: implement event handler
-    });
+    on<AuthEvent>((event, emit) {});
 
     on<SignUpWithEmailEvent>((event, emit) async {
       emit(AuthLoading());
@@ -28,7 +24,6 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       }, (user) => emit(Authenticated(user: user)));
     });
     on<SignInWithEmailEvent>((event, emit) async {
-      log("no error");
       emit(AuthLoading());
       Either<Failure, User> result = await authRepository.signIn(
         event.email,
@@ -55,21 +50,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         emit(ShowSnackBar(message: failure.message)); // UI effect
       }, (user) => emit(Authenticated(user: user)));
     });
+    on<ShowSnackBarEvent>((event, emit) {
+      emit(ShowSnackBar(message: event.message));
+    });
   }
 }
-
-//SIGN IN
-// try {
-//   final user = await signInWithGoogle();
-//   emit(Authenticated(user: user));
-// } catch (e) {
-//   log("Error signing in with Google: $e");
-//   emit(Unauthenticated());
-// }
-//SIGN OUT
-// try {
-//   await signOut();
-//   // Navigate to the next screen or show a success message
-// } catch (e) {
-//   log("Error signing out: $e");
-// }

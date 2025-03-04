@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:authentication_bloc_firebase_2/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:authentication_bloc_firebase_2/features/auth/presentation/pages/sign_up_page.dart';
 import 'package:authentication_bloc_firebase_2/features/common/widgets/background.dart';
@@ -49,7 +47,6 @@ class Login extends StatelessWidget {
               listenWhen: (previous, current) => current is ShowSnackBar,
               buildWhen: (previous, current) => current is! AuthActionState,
               listener: (context, state) {
-                log("Current AuthBloc state: $state");
                 if (state is ShowSnackBar) {
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(
@@ -94,7 +91,7 @@ class Login extends StatelessWidget {
                       hintText: "Enter Password",
                       formKey: _passwordformKey,
                     ),
-                    SizedBox(height: 20),
+                    SizedBox(height: 10),
                     //forgot password
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 25.0),
@@ -108,25 +105,31 @@ class Login extends StatelessWidget {
                         ],
                       ),
                     ),
-                    SizedBox(height: 20),
+                    SizedBox(height: 10),
                     //login button
                     MyButton(
                       onTap: () {
-                        // if (_emailformKey.currentState!.validate() &&
-                        //     _passwordformKey.currentState!.validate()) {
-                        // BlocProvider.of<AuthBloc>(context).add(
+                        if (emailController.text.isEmpty ||
+                            passwordController.text.isEmpty) {
+                          context.read<AuthBloc>().add(
+                            ShowSnackBarEvent(
+                              message: "Email or password cannot be empty",
+                            ),
+                          );
+                        } else {
+                          context.read<AuthBloc>().add(
+                            SignInWithEmailEvent(
+                              email: emailController.text,
+                              password: passwordController.text,
+                            ),
+                          );
+                        }
+                        // context.read<AuthBloc>().add(
                         //   SignInWithEmailEvent(
                         //     email: emailController.text,
                         //     password: passwordController.text,
                         //   ),
                         // );
-                        // }
-                        context.read<AuthBloc>().add(
-                          SignInWithEmailEvent(
-                            email: emailController.text,
-                            password: passwordController.text,
-                          ),
-                        );
                       },
                       label: 'Login',
                     ),
